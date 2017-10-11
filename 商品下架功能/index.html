@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<header>
+
+	</header>
+	<div id="container" class="clear"></div>
+	<table id="list">
+		<thead>
+			<tr>
+				<th>商品</th>
+				<th>价钱</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="listInfo">
+			<!--<tr>
+				<td>27 英寸配备 Retina 5K显示屏</td>
+				<td>￥15999</td>
+				<td></td>
+			</tr>-->
+		</tbody>
+	</table>
+	<footer>
+
+	</footer>
+</body>
+<script src="./tools.js"></script>
+<script src="./data.js"></script>
+<script src="./createHtml.js"></script>
+<script>
+	;(function (data){
+		var allGoods = document.querySelectorAll('.goods');
+		var listInfo = document.getElementById('listInfo');
+
+		for(var i=0; i<allGoods.length; i++){
+			goodsCounter(i);
+		}
+
+		// goodsCounter(0);
+
+		function goodsCounter(index){
+			// 设定的倒计时时间
+			var setTime = allGoods[index].querySelector('.time');
+			// 确定按钮
+			var sureBtn = allGoods[index].querySelector('.btn');
+			// 用来显示倒计时时间的
+			var timeNums = allGoods[index].querySelectorAll('.number');
+			// 遮罩
+			var shadow = allGoods[index].querySelector('.shadow');
+			// 标志
+			var sign = allGoods[index].querySelector('.sign');
+
+			// 点击确定按钮交互
+			sureBtn.onclick = function (){
+				// 获取当前要设定时间的字符串
+				var val = setTime.value;
+				// 判断如果val是空的
+				if(val.trim() === ''){
+					return alert('请输入一个时间!');
+				}
+				// 获取设定的时间
+				var targetTime = new Date(val);
+
+				// 判断输入的时间是否正确
+				if(targetTime.toString() === 'Invalid Date'){
+					return alert('输入的时间格式不正确!');
+				}
+
+				targetTime = targetTime.getTime();
+
+				// 判断输入的时间是否是将来的
+				// if(targetTime < getTime()){
+				// 	return alert('设置的时间不能比当前时间少!');
+				// }
+
+				timeCounter(timeNums, targetTime, function (){
+					// 时间到了，执行动画和添加列表
+					timeFinish(index, shadow, sign);
+				});
+			};
+		}
+
+		function timeCounter(eles, targetTime, cb){
+			var diffTime = Math.round((targetTime - getTime()) / 1000);
+
+			if(diffTime >= 0){
+				var h = ~~(diffTime / 3600);
+				var m = ~~((diffTime - h * 3600) / 60);
+				var s = diffTime % 60;
+				var timeStr = add0(h) + add0(m) + add0(s);
+
+				for(var i=0; i<timeStr.length; i++){
+					eles[i].innerHTML = timeStr[i];
+				}
+
+				setTimeout(timeCounter, 500, eles, targetTime, cb);
+			}else{
+				cb&&cb();
+			}
+
+		}
+
+		function timeFinish(index, shadow, sign){
+			css(shadow, 'display', 'block');
+			css(sign, 'display', 'block');
+			css(sign, 'scale', 3);
+			animation({
+				el: shadow,
+				attrs: {
+					opacity: 1
+				}
+			});
+			animation({
+				el: sign,
+				attrs: {
+					opacity: 1,
+					scale: 1
+				},
+				cb(){
+					shake({
+						el: allGoods[index],
+						times: 20,
+						cb(){
+							listInfo.innerHTML += `<tr>
+													<td>${data[index].name}</td>
+													<td>￥${data[index].price}</td>
+													<td><img src="${data[index].img}" /></td>
+												</tr>`;
+						}
+					});
+				}
+			});
+		}
+
+
+		// 获取时间戳
+		function getTime(){
+			return Date.now();
+		}
+
+	})(goodsData);
+</script>
+</html>
