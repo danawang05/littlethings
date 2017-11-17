@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style>
+    .container {
+      width: 1000px;
+      height: 600px;
+      position: relative;
+      border: 2px solid #000;
+      margin: 30px auto;
+    }
+    .ball {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background-color: rgb(33, 124, 218);
+      border-radius: 50%;
+      left: 300px;
+      top: 100px;
+    }
+    .line {
+      position: absolute;
+      left: 200px;
+      top: 280px;
+      width: 500px;
+      height: 2px;
+      background-color: #000;
+      transform-origin: 0 1px;
+      transform: rotate(10deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ball"></div>
+    <div class="line"></div>
+  </div>
+  <script>
+    var container = document.querySelector('.container');
+    var ball = document.querySelector('.ball');
+    var line = document.querySelector('.line');
+    
+    var g = 0.1, bounce = -1;
+    
+    // 代表小球的属性
+    var B = {
+      x: ball.offsetLeft + ball.offsetWidth / 2,
+      y: ball.offsetTop + ball.offsetHeight / 2,
+      r: ball.offsetWidth / 2,
+      vx: 0,
+      vy: 0
+    };
+    
+    // 代表容器的范围
+    var rect = {
+      l: 0,
+      r: container.clientWidth,
+      t: 0,
+      b: container.clientHeight
+    };
+    
+    // 代表斜面
+    var L = {
+      startX: line.offsetLeft,
+      startY: line.offsetTop,
+      endX: line.offsetLeft + line.offsetWidth,
+      endY: line.offsetTop,
+      rotation: 10 * Math.PI / 180
+    };
+    
+    /**
+     * 高级坐标旋转公式：
+     *  x1 = cx * cos(vr) - cy * sin(vr);
+     *  y1 = cy * cos(vr) + cx * sin(vr);
+     *
+     * cx, cy 代表当前这点相对于中心点的坐标
+     */
+    
+    var sin = Math.sin(L.rotation);
+    var cos = Math.cos(L.rotation);
+    
+    (function move(){
+      window.requestAnimationFrame(move);
+      
+      B.vy += g;
+      B.x += B.vx;
+      B.y += B.vy;
+      
+      // 设定斜面的起始点为中心点
+      var cx = B.x - L.startX;
+      var cy = B.y - L.startY;
+      
+      // 旋转小球的坐标
+      var x1 = cx * cos + cy * sin;
+      var y1 = cy * cos - cx * sin;
+      
+      // 旋转小球速度
+      var vx1 = B.vx * cos + B.vy * sin;
+      var vy1 = B.vy * cos - B.vx * sin;
+
+      if(x1 + B.r > 0 && x1 - B.r < L.endX - L.startX){
+        if(y1 + B.r > 0 && vy1 > y1){
+          y1 = -B.r;
+          vy1 *= bounce;
+        }
+        if(y1 - B.r < 0 && vy1 < y1){
+          y1 = B.r;
+          vy1 *= bounce;
+        }
+      }
+      
+      cx = x1 * cos - y1 * sin;
+      cy = y1 * cos + x1 * sin;
+      
+      B.vx = vx1 * cos - vy1 * sin;
+      B.vy = vy1 * cos + vx1 * sin;
+      
+      B.x = L.startX + cx;
+      B.y = L.startY + cy;
+      
+      checkBallBounce(B, rect, bounce)
+      
+      ballMove();
+    })();
+    
+    function ballMove(){
+      ball.style.left = B.x - B.r + 'px';
+      ball.style.top = B.y - B.r + 'px';
+    };
+    
+    function checkBallBounce(ball, rect, bounce){
+      if(ball.x - ball.r < rect.l){
+        ball.x = rect.l + ball.r;
+        ball.vx *= bounce;
+      }else if(ball.x + ball.r > rect.r){
+        ball.x = rect.r - ball.r;
+        ball.vx *= bounce;
+      }
+      
+      if(ball.y - ball.r < rect.t){
+        ball.y = rect.t + ball.r;
+        ball.vy *= bounce;
+      }else if(ball.y + ball.r > rect.b){
+        ball.y = rect.b - ball.r;
+        ball.vy *= bounce;
+      }
+    }
+  </script>
+</body>
+</html>

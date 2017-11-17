@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style>
+    .container {
+      width: 1000px;
+      height: 600px;
+      position: relative;
+      border: 2px solid #000;
+      margin: 30px auto;
+    }
+    .ball {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background-color: rgb(33, 124, 218);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ball"></div>
+  </div>
+  <script>
+    var container = document.querySelector('.container');
+    var ball = document.querySelector('.ball');
+    
+    var W = container.clientWidth;
+    var H = container.clientHeight;
+    
+    // 代表小球的属性
+    var B = {
+      x: rp([50, W - 50], true),
+      y: rp([50, H - 50], true),
+      r: 50,
+      vx: 0,
+      vy: 0
+    };
+    
+    // 代表容器的范围
+    var rect = {
+      l: 0,
+      r: container.clientWidth,
+      t: 0,
+      b: container.clientHeight
+    };
+    
+    (function (){
+      ball.style.left = B.x - B.r + 'px';
+      ball.style.top = B.y - B.r + 'px';
+    })();
+    
+    
+    
+    
+    
+    
+    function rp(arr, int){
+      var max = Math.max(...arr),
+          min = Math.min(...arr);
+      var ret = Math.random() * (max - min) + min;
+      return int ? Math.round(ret) : ret;
+    }
+  </script>
+</body>
+</html>
