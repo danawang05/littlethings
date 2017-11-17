@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动切换</title>
+	<style>
+		body{
+			margin:0;
+			font-family:"微软雅黑";
+		}
+		ul,li{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		.clearFix:after{
+			display: block;
+			content:'';
+			clear:both;
+		}
+		.warp{
+			position: relative;
+			width: 1200px ;
+			height: 800px;
+			box-shadow:2px 2px 20px #949493;
+			margin:50px auto;
+			
+		}
+		.main{
+			position: absolute;
+			top:50%;
+			left: 50%;
+			margin-top:-130px;
+			margin-left: -225px;
+			width: 450px;
+			height: 260px;
+			background-color:#ffb746;
+			box-shadow:2px 2px 4px #ffc768;
+		}
+		.tab>li{
+			float: left;
+			line-height: 40px;
+			color:#333;
+			background: #fff7e2;
+			text-align: center;
+			width: 33.33%;
+			border-right:1px solid #ffdea3;
+			box-sizing:border-box;
+			cursor:pointer;
+		}
+		.tab>li.active{
+			color:#fff;
+			background: none;
+		}
+		.tab>li:nth-of-type(3){
+			border:none;
+		}
+		.content{
+			padding:24px 0 0 20px;
+            display: none;
+		}
+     .content.active{
+         display:block;
+     }
+		.contentImg{
+			float: left;
+			width: 176px;
+			height: 176px;
+			border:2px solid #fff7e2;
+            overflow: hidden;
+            position: relative;
+		}
+     .contentImg  img{
+         height: 100%;
+         width: auto;
+         margin-left: -50%;
+         opacity:0;
+         transition: 0.5s;
+         position: absolute;
+         left: -100%;
+         top: 0px;
+         transform: scaleY(0);
+     }
+     img.active{
+         opacity:1;
+         left: 0px;
+         transform: scaleY(1);
+     }
+		.contentTxt{
+			float: left;
+			color:#333;
+			color:#fff;
+			font-size: 14px;
+		}
+		.contentTxt li{
+			width: 210px;
+			line-height: 60px;
+			padding-left: 20px;
+			cursor: pointer;
+		}
+		.contentTxt li.active{
+			color:#333;
+			background: #fff7e2;
+		}
+		.contentTxt li:hover{
+			color:#333;
+		}
+	</style>
+</head>
+<body>
+	<section class="warp">
+		<div class="main">
+			<ul class="tab clearFix">
+			  <!-- <li>专题</li>
+				   <li>视频</li>
+				   <li>图片</li> -->
+			</ul>
+			<div class="content-list">
+				<div class="content clearFix">
+				  <div class="contentImg">
+					<!-- <img src="images/auto_pic.png" alt=""> -->
+				  </div>
+				  <div class="contentTxt">
+					     <ul>
+					       <!-- <li>
+					            奇虎360纽交所上市11
+					            </li>
+					            <li>
+					            2011年IT领袖峰会
+					            </li>
+					            <li>
+					            CCBN召开 助三网融合
+					            </li> -->
+					          </ul>
+				  </div>
+				</div>
+				<div class="content clearFix">
+				   <div class="contentImg">
+					 <!-- <img src="images/auto_pic.png" alt=""> -->
+					   </div>
+					   <div class="contentTxt">
+					     <ul>
+					          <!-- <li>
+					          奇虎360纽交所上市11
+					          </li>
+					          <li>
+					          2011年IT领袖峰会
+					          </li>
+					          <li>
+					          CCBN召开 助三网融合
+					          </li> -->
+					          </ul>
+					   </div>
+				</div>
+				<div class="content clearFix">
+				  <div class="contentImg">
+					<!-- <img src="images/auto_pic.png" alt=""> -->
+					   </div>
+					   <div class="contentTxt">
+					     <ul>
+					       <!-- <li>
+					            奇虎360纽交所上市11
+					            </li>
+					            <li>
+					            2011年IT领袖峰会
+					            </li>
+					            <li>
+					            CCBN召开 助三网融合
+					            </li> -->
+					          </ul>
+					   </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+     var imgData = [
+         ['./images/1.jpg','images/4.jpg','images/5.jpg'],
+         ['images/2.jpg','images/1.jpg','images/7.jpg'],
+         ['images/3.jpg','images/5.jpg','images/2.jpg']];
+     var cardTextData = [
+         ['消防员钓鱼竿救人',' 枪支改造厂设在学校','奔驰掉工地深沟'],
+         ['宾利被撞配一把葱',' 5岁女孩买画救父','迪丽热巴秀场新高度'],
+         ['警察公主抱女司机','少年直播假冒公安厅长 ','CCBN召开 助合'],
+     ];
+     console.log(cardTextData[0].length)
+     var cardTitleData = ['专题','视频','图片'];
+
+     var imgStr = [];
+     var textStr = [];
+     var titleStr ='';
+
+     var contentText = document.querySelectorAll('.contentTxt ul');
+     var contentImg = document.querySelectorAll('.contentImg');
+     var content = document.querySelectorAll('.content');
+     var tab = document.querySelector('.tab');
+     var main = document.querySelector('.main');
+
+     for(var i=0; i<content.length; i++){
+         tab.innerHTML = titleStr+=`<li>${cardTitleData[i]}</li>`;
+         for(var j=0; j<cardTextData[i].length; j++){
+
+             contentText[i].innerHTML+=textStr[j] = `<li>${cardTextData[i][j]}</li>`;
+         }
+         for(var j=0; j<imgData[i].length;j++){
+             contentImg[i].innerHTML  +=imgStr[j]=`<img src="${imgData[i][j]}" alt="">`;
+         }
+
+     }
+
+     var cardTitle = document.querySelectorAll('.tab li');
+     var currentTab = 0;
+     var currentList = 0;
+     var len = content.length;
+     var timer = 0;
+
+     init(currentTab,currentList);
+
+     function init(currentTab,currentList){
+         for(var i=0; i<content.length; i++){
+             var lists = content[i].querySelectorAll('li');
+             var img = contentImg[i].querySelectorAll('img');
+             cardTitle[i].classList.remove('active');
+             content[i].classList.remove('active');
+             cardTitle[currentTab].classList.add('active');
+             content[currentTab].classList.add('active');
+             for(var j=0; j<lists.length; j++){
+                 lists[j].classList.remove('active');
+                 lists[currentList].classList.add('active');
+             }
+             for(var j=0; j<imgData[i].length;j++){
+                 img[j].classList.remove('active');
+                 img[currentList].classList.add('active');
+             }
+         }
+     }
+     console.log(contentImg[0].style.background);
+     for(var i =0 ; i<content.length; i++){
+         var lists = content[i].querySelectorAll('li');
+         var img = contentImg[i].querySelectorAll('img');
+         (function (i){
+             cardTitle[i].onclick = function (){
+                 currentTab = i;
+                 currentList = 0;
+                 init(currentTab,currentList);
+             };
+         })(i);
+         for(var j =0; j<cardTextData[i].length; j++){
+             var listlen = cardTextData[i].length;
+             (function(j){
+                 lists[j].onclick = function(){
+                     currentList = j;
+                     init(currentTab,currentList);
+                 };
+             })(j);
+         }
+     }
+
+     function autoPlay(){
+         timer = setInterval(
+             function(){
+                 currentList++;
+                 if(currentList%listlen===0){
+                     currentTab++;
+                     currentList%=listlen;
+                 }
+                 currentTab%=len;
+                 init(currentTab,currentList);
+             }
+             ,1000);
+     }
+     autoPlay();
+     main.onmouseover = function(){
+         clearInterval(timer);
+     };
+     main.onmouseout = function(){
+         autoPlay();
+     }
+     console.log(contentText,cardTextData[1][2],textStr,cardTitle,listlen,lists);
+	</script>
+</body>
+</html>
