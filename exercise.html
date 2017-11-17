@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 500px;
+				height: 30px;
+				background: red;
+				margin: 10px;
+			}
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+
+		<script>
+			function pSibling(element){
+				return element.previousElementSibling;
+			}
+			var divs = document.getElementsByTagName('div');
+
+			Array.from(divs).forEach(function (item){
+				item.onmouseover = function (){
+					this.style.background = 'blue';	
+					// 上一个兄弟
+					if(this.previousElementSibling){
+						this.previousElementSibling.style.background = 'green';
+					}
+					if(this.nextElementSibling){
+						this.nextElementSibling.style.background = 'green';
+					}
+					
+					
+				};
+				item.onmouseout = function (){
+					this.style.background = '';	
+					if(this.previousElementSibling){
+						this.previousElementSibling.style.background = '';
+					}
+					if(this.nextElementSibling){
+						this.nextElementSibling.style.background = '';
+					}
+				};
+			})
+
+		</script>
+	</body>
+</html>
