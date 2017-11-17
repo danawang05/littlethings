@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>云盘</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/bulma.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        html{
+            width:100%;
+        height:100%;
+        overflow: hidden;
+        }
+        body{
+            width:100%;
+            height:100%;
+        }
+        #wrapper {
+            width: 100%;
+            /* 1920/16 */
+            height: 100%;
+            background-image: url('img/bg3.jpg');
+        }
+        
+        #header {
+            width: 100%;
+            height: 3.75rem/* 60/16 */
+            ;
+            display: flex;
+            justify-content: flex-start;
+            border-bottom: 2px solid rgba(248, 248, 248, 0.2);
+        }
+        
+        #header .logo {
+            width: 11.875rem;
+            /* 190/16 */
+            height: 100%;
+            font-size: 35px;
+            line-height: 20px;
+            color: rgba(250, 250, 250, 0.72);
+            text-align: center;
+        }
+        
+        #header #tags {
+            width: 500px;
+            height: 100%;
+        }
+        
+        #downpart {
+            width: 100%;
+            height: 56.875rem;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        #downpart #menu {
+            width: 190px;
+            height: 320px;
+            border-right: 2px solid rgba(248, 248, 248, 0.2);
+        }
+        
+        #downpart .content {
+            width: 107.5rem;
+            /* 1720/16 */
+            height: 100%;
+        }
+        
+        .alert-message {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        
+        #alertInfo {
+            display: block;
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .checkAllBox {
+            color: #ffffff;
+            font-size: 15px;
+        }
+        
+        .content .bar {
+            height: 3.75rem/* 60/16 */
+            ;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .bar .tabs {
+            height: 100%;
+            width: 38rem/* 450/16 */
+            ;
+            /* background-color: palevioletred; */
+        }
+        
+        .content .search {
+            height: 100%;
+            width: 33rem/* 650/16 */
+            ;
+            margin-top: .875rem/* 14/16 */
+            ;
+        }
+        
+        .content .info {
+            display: flex;
+            justify-content: space-around;
+        }
+        /* .content .item {
+            width: 100%;
+            height: 820px;
+            background-color: rgba(250, 250, 250, 0.6);
+            border: 1px solid rgba(250, 250, 250, 0.6);
+            border-radius: 5px;
+        }
+
+        .content #item {
+            width: 100%;
+            height: 742px;
+            background-color: rgba(250, 250, 250, 0.6);
+            border: 1px solid rgba(250, 250, 250, 0.6);
+            border-radius: 5px;
+            flex: 1;
+            box-sizing: border-box;
+            padding: 10px;
+            overflow: auto;
+        } */
+        /*------------遮罩层-----------*/
+        /* #Mask {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	opacity: .5;
+	z-index: 66;
+} */
+        
+        .breadcrumb {
+            padding: 0;
+            margin-bottom: 0;
+        }
+        
+        .breadcrumb>li {
+            display: inline-flex;
+        }
+        
+        .info .check-all-wrap .check-all-text {
+            margin: 0;
+        }
+        
+        .info .check-all-wrap .check-all {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            margin-left: 4px;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .info .check-all-wrap .check-all .check-all-active {
+            display: none;
+        }
+        
+        .info .check-all-wrap .check-all.checked .check-all-active {
+            display: inline;
+        }
+        
+        .info .check-all-wrap {
+            margin-left: 80px;
+            padding-right: 0;
+        }
+        
+        .fs-container-wrap {
+            width: 100%;
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .empty-info {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        /* .empty-info img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        } */
+        
+        .empty-info span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .empty-info.show {
+            display: block;
+        }
+        
+        .fs-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .fs-container-wrap {
+            width: 100%;
+            height: 520px;
+            background-color: rgba(250, 250, 250, 0.6);
+            border: 1px solid rgba(250, 250, 250, 0.6);
+            border-radius: 5px;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 10px 0 0 0;
+            /*border: 1px solid red;*/
+            text-align: center;
+        }
+        
+        .file-wrap {
+            width: 86%;
+            min-width: 180px;
+            height: auto;
+            padding-bottom: 10px;
+            margin: 0 auto;
+            border: 1px solid rgba(0, 0, 0, 0);
+            position: relative;
+        }
+        
+        .file-wrap:hover {
+            border: 1px solid #ddd;
+        }
+        
+        .file-wrap:hover .file-check {
+            display: block;
+        }
+        
+        .file-wrap.checked {
+            border: 1px solid #ddd;
+        }
+        
+        .file-wrap.checked .file-check {
+            display: block;
+        }
+        
+        .file-wrap.checked .file-check .file-check-active {
+            display: block;
+        }
+        
+        .file-wrap .file-check {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgb(241, 238, 241);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            box-sizing: border-box;
+            display: none;
+        }
+        
+        .file-wrap .file-check-click {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        
+        .file-wrap .file-check .file-check-active {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            display: none
+        }
+        /*.file-wrap .file-check.checked span {
+  display: block;
+}*/
+        
+        .file-wrap .file-img {
+            width: 44%;
+            height: 0;
+            padding-top: 44%;
+            min-width: 80px;
+            /*min-height: 80px;*/
+            margin: 35px auto 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('./img/file.jpg');
+        }
+        
+        .file-name {
+            border: none;
+        }
+        
+        .file-item .file-name {
+            display: inline-block;
+            max-width: 70%;
+        }
+        
+        .file-item .file-name .name-text {
+            text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            /*max-width: 70%;*/
+            height: 26px;
+            line-height: 26px;
+            margin-top: 6px;
+            text-align: center;
+            display: none;
+        }
+        
+        .file-item .file-name .name-input {
+            display: none;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 3px;
+        }
+        
+        .file-item .file-name .name-input.show,
+        .file-item .file-name .name-text.show {
+            display: block;
+        }
+        
+        .fs-dialog {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 200ms 50ms;
+            transform: scale(0);
+        }
+        
+        .fs-dialog.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .file-move {
+            position: absolute;
+        }
+        
+        .file-move {
+            max-width: 90%;
+        }
+        
+        .file-move .modal-dialog {
+            margin: 0;
+        }
+        
+        .file-move .folder-list {
+            max-height: 300px;
+            overflow-x: auto;
+        }
+        
+        .fs-alert {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .fs-alert .title {
+            display: inline-block;
+            padding: 6px 12px;
+        }
+        /*右键布局*/
+        
+        .menu {
+            position: absolute;
+            width: 200px;
+            padding: 2px;
+            margin: 0;
+            border: 1px solid #bbb;
+            background: #eee;
+            background: -webkit-linear-gradient(to bottom, #fff 0%, #e5e5e5 100px, #e5e5e5 100%);
+            background: linear-gradient(to bottom, #fff 0%, #e5e5e5 100px, #e5e5e5 100%);
+            z-index: 100;
+            border-radius: 3px;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+            opacity: 0;
+            -webkit-transform: translate(0, 15px) scale(.95);
+            transform: translate(0, 15px) scale(.95);
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+            pointer-events: none;
+        }
+        
+        .menu-item {
+            display: block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+        }
+        
+        .menu-btn {
+            background: none;
+            line-height: normal;
+            overflow: visible;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            display: block;
+            width: 100%;
+            color: #444;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            padding: 6px 8px;
+            border-radius: 3px;
+        }
+        
+        .menu-btn::-moz-focus-inner,
+        .menu-btn::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+        
+        .menu-text {
+            margin-left: 25px;
+        }
+        
+        .menu-btn .fa {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        
+        .menu-item:hover>.menu-btn {
+            color: #fff;
+            outline: none;
+            background-color: #2E3940;
+            background: -webkit-linear-gradient(to bottom, #5D6D79, #2E3940);
+            background: linear-gradient(to bottom, #5D6D79, #2E3940);
+            border: 1px solid #2E3940;
+        }
+        
+        .menu-item.disabled {
+            opacity: .5;
+            pointer-events: none;
+        }
+        
+        .menu-item.disabled .menu-btn {
+            cursor: default;
+        }
+        
+        .menu-separator {
+            display: block;
+            margin: 7px 5px;
+            height: 1px;
+            border-bottom: 1px solid #fff;
+            background-color: #aaa;
+        }
+        
+        .menu-item.submenu::after {
+            content: "";
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-left-color: #808080;
+        }
+        
+        .menu-item.submenu:hover::after {
+            border-left-color: #fff;
+        }
+        
+        .menu .menu {
+            top: 4px;
+            left: 99%;
+        }
+        
+        .show-menu,
+        .menu-item:hover>.menu {
+            opacity: 1;
+            -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+            pointer-events: auto;
+        }
+        
+        .menu-item:hover>.menu {
+            -webkit-transition-delay: 100ms;
+            transition-delay: 300ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop" id="wrapper">
+        <div class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop" id="header">
+            <div class="logo"><span>微云</span></div>
+            <div class="register"></div>
+        </div>
+        <div class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop" id="downpart">
+            <div class="left">
+                <aside class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop" id="menu">
+
+                    <ul class="menu-list">
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                </span>
+                                <span>全部文件</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                </span>
+                                <span>图片</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                </span>
+                                <span>文档</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                </span>
+                                <span>视频</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-building" aria-hidden="true"></i>
+                </span>
+                                <span>种子</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-music" aria-hidden="true"></i>
+                </span>
+                                <span>音乐</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-h-square" aria-hidden="true"></i>
+                </span>
+                                <span>其它</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+                                <span>我的分享</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="icon is-small">
+                    <i class="fa fa-recycle" aria-hidden="true"></i>
+                </span>
+                                <span>回收站</span>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </aside>
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 pull-right alert-message">
+                    <span class="message-info" id="alertInfo"></span>
+                </div>
+                <div class="prog">
+                    <span>进度展示：</span>
+                    <progress class="progress is-warning" value="15" max="100">15%</progress>
+                </div>
+            </div>
+            <div class="content">
+                <div class="bar">
+                    <div class="tabs is-boxed">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <button id="newDir">
+                                    <span class="icon is-small">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                </span>
+                                    <span id="nbutton">新建文件夹</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button id="rmFile">
+
+                                    <span class="icon is-small">
+
+                    <i class="fa fa-eraser" aria-hidden="true"></i>
+                </span>
+                                    <span id="dbutton">删除文件夹</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button id="reName">
+                                    <span class="icon is-small">
+                    <i class="fa fa-retweet" aria-hidden="true"></i>
+                </span>
+                                    <span>重命名文件夹</span>
+            </button>
+                            </li>
+                            <li>
+                                <button id="moveFile">
+                                    <span class="icon is-small">
+                                    <i class="fa fa-window-restore" aria-hidden="true"></i>
+                                    </span>
+                                    <span id="button">移动文件夹</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Find a repository">
+                            </div>
+                            <div class="control">
+                                <a class="button is-info">Search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <!-- <label class="checkbox">
+                    <input  id="checkAllBox" type="checkbox">
+                        全选
+                    </label> -->
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 check-all-wrap">
+                        <label for="checkAllBox" class="check-all-text">全选: </label>
+                        <div class="check-all" id="checkAllBox">
+                            <span class="glyphicon glyphicon-ok check-all-active"></span>
+                        </div>
+                    </div>
+
+                    <span>已选中：<span id="checkedFileNum">0</span>个文件</span>
+
+                </div>
+
+                <div class="panel panel-default panel-cus-set crumbs">
+                    <div class="panel-body">
+                        <nav class="breadcrumb" id="breadCrumb">
+                            <li><a href="#">根目录</a></li>
+                            <li><a href="#">Library</a></li>
+                            <li><a href="#">Data</a></li>
+                        </nav>
+                    </div>
+                </div>
+                <div class="container-fluid fs-container-wrap">
+                    <div class="row fs-container" id="fsContainer">
+                        <div class="file-item">
+                            <div class="file-wrap checked">
+                                <div class="file-check">
+                                    <span class="glyphicon glyphicon-ok file-check-active "></span>
+                                </div>
+                                <div class="file-check-click"></div>
+                                <div class="file-img"></div>
+                                <div class="file-name">
+                                    <p class="name-text show" title="文件夹">文件夹</p>
+                                    <input type="text" class="name-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="empty-info" id="emptyInfo">
+                        <span>文件夹已空，请点击新建文件夹按钮创立新文件</span>
+                        <!-- <img src="./img/empty.png"> -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fs-dialog fade" id="fsDialog">
+            <!-- <div class="file-move">
+               <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">选择文件为:</h4>
+            </div>
+            <div class="modal-body folder-list">
+              <div class="fs-list-tree" id="fsListTree">
+                <ul>
+                  <li>
+                    <div class="active">
+                      <i class="glyphicon glyphicon-folder-close icon"></i>
+                      <span class="name">根目录</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="">
+                          <i class="glyphicon glyphicon-folder-close icon"></i>
+                          <span>文件夹1</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-warning">确定</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+            <!-- <div class="file-move">
+  <div class="modal-dialog">
+   <div class="fs-list-tree" id="fsListTree">
+        <ul>
+            <li>
+                <div class="active">
+                    <i class="glyphicon glyphicon-folder-close icon"></i>
+                    <span class="name">根目录</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="">
+                            <i class="glyphicon glyphicon-folder-close icon"></i>
+                            <span>文件夹1</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <a class="button">取消</a>
+
+    </p>
+    <p class="card-footer-item">
+      <a class="button is-danger">确定</a>
+    </p>
+  </footer>
+</div> -->
+        </div>
+
+        <menu class="menu">
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-folder-open"></i>
+                    <span class="menu-text">打开</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-folder-open"></i>
+                    <span class="menu-text">新建</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-folder-open"></i>
+                    <span class="menu-text">下载</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-folder-open"></i>
+                    <span class="menu-text">显示简介</span>
+                </button>
+            </li>
+            <li class="menu-item submenu">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-text">Social</span>
+                </button>
+                <!--二级菜单-->
+                <menu class="menu">
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-comment"></i>
+                            <span class="menu-text">Comment</span>
+                        </button>
+                    </li>
+                    <li class="menu-item submenu">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-share"></i>
+                            <span class="menu-text">Share</span>
+                        </button>
+                        <!--三级菜单-->
+                        <menu class="menu">
+                            <li class="menu-item">
+                                <button type="button" class="menu-btn">
+                                    <i class="fa fa-twitter"></i>
+                                    <span class="menu-text">Twitter</span>
+                                </button>
+                            </li>
+                        </menu>
+                    </li>
+                </menu>
+            </li>
+        </menu>
+    </div>
+</body>
+<script src="./js/headerMenu.js"></script>
+<script src="./db/db.js"></script>
+<script src="./js/createHtml.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/tools.js"></script>
+
+</html>
