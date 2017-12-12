@@ -1,0 +1,34 @@
+.container {
+  width: 600px;
+  padding: 40px 20px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.btn {
+  min-width: 80px;
+  height: 80px;
+  padding: 0 20px;
+  border: 2px solid #000;
+  font-size: 40px;
+}
+.add {
+  border-radius: 8px 0 0 8px;
+}
+.cut {
+  border-radius: 0 8px 8px 0;
+}
+.num {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  box-sizing: border-box;
+}
