@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <!-- <li v-for="(item, i) in list">
+        {{i}}: {{item.text}}
+      </li> -->
+      <li v-for="item in list">
+        {{item.text}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {
+            text: '学习 js',
+          },
+          {
+            text: '学习 vue',
+          },
+          {
+            text: '写个厉害的项目'
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="say('hi', $event)">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'Vue.js'
+      },
+      methods: {
+        say: function (message, ev) {
+          // alert(message)
+          console.log(ev);
+        }
+      }
+    })
+
+  </script>
+</body>
+</html>

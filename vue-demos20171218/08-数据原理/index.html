@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+<body>
+  <h1 id="app">hello</h1>
+  <script>
+    const app = document.getElementById('app');
+
+    // const data = {
+    //   a: 1,
+    //   b: 2,
+    //   c: [
+    //     {
+    //       x: 10
+    //     }
+    //   ]
+    // }
+
+    const data = {
+      message: 'hello'
+    }
+
+    function observe(data){
+      if(!data || typeof data !== 'object'){
+        return;
+      }
+      Object.keys(data).forEach((key) => {
+        defineReactive(data, key, data[key])
+      })
+    }
+
+    function defineReactive(data, key, val){
+      observe(val);
+      Object.defineProperty(data, key, {
+        enumerable: true,  // 是否可以被枚举
+        configurable: false, // 是否可以再次进行配置
+        get(){
+          return val
+        },
+        set(newVal){
+          app.innerHTML = val = newVal;
+        }
+      });
+    }
+
+    observe(data);
+
+    console.log(data);
+    
+  </script>
+</body>
+</html>
