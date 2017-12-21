@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <input v-model="parentMsg">
+    <br>
+    <my-template v-bind:my-message="parentMsg"></my-template>
+  </div>
+  <script>
+    const Child = {
+      props: {
+        myMessage: {
+          type: String,
+          required: true,
+        },
+        num: {
+          type: Number,
+          default: 10
+        }
+      },
+      template: `
+        <div>
+          <h1>{{myMessage}}</h1>
+          <p>{{num + 1}}</p>
+        </div>
+      `,
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'my-template': Child
+      },
+      data: {
+        parentMsg: ''
+      }
+    })
+
+  </script>
+</body>
+</html>
