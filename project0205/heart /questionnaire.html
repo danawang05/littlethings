@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>心脑视野</title>
+    <!-- 清除各种标签的默认样式文件 -->
+    <link rel="stylesheet" href="./css/minireset.min.css">
+    <!-- 引入css文件 -->
+    <link rel="stylesheet" href="./css/question.css">
+    <!-- 用来设置rem根节点的大小-->
+    <script type="text/javascript" src="./js/flexible.js"></script>
+    <script src="./js/jquery-3.3.1.js"></script>
+    <!-- <link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.min.css"> -->
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- 导航 -->
+        <ul class="header">
+            <li class="fir">
+                <img src="./img/logo.png" alt="" class="logo">
+                <img src="./img/word.png" alt="" class="word">
+            </li>
+            <li class="sec">登陆验证</li>
+        </ul>
+        <div class="gap"></div>
+        <!-- 表单 -->
+        <div class="main" style="margin-bottom:1rem">
+            <div class="title">
+                <h4>胞磷胆碱临床应用信息表</h4>
+                <h5>--改善各种原因引起的认知功能障碍的随机对照临床试验研究</h5>
+            </div>
+            <div class="firstproj">
+                <h4>一、一般资料</h4>
+                <div style="margin-left:0.64rem;margin-bottom:0.1rem">
+                    <span>姓名：</span>
+                    <input type="text" class="mui-input-clear" placeholder="请填写">
+                </div>
+                <div>
+                    <span style="margin-left:0.64rem">年龄：</span>
+                    <label for="speed"></label>
+                    <select class="age" name="speed" id="speed" placeholder="请选择" value=''>
+                    <option>请选择</option>
+                    <option>1岁</option>
+                    <option>2岁-10岁</option>
+                    <option>10岁-20岁</option>
+                    <option>20岁-30岁</option>
+                    <option>30岁-35岁</option>
+                    <option>35岁-40岁</option>
+                    <option>40岁-45岁</option>
+                    <option>45岁-50岁</option>
+                    <option>50岁-60岁</option>
+                    <option>60岁-70岁</option>
+                    <option>70岁-80岁</option>
+                    <option>80岁-90岁</option>
+                    <option>100岁以上</option>
+                    </select>
+                </div>
+                <div>
+                    <span style="margin-left:0.64rem;margin-bottom:0.7rem">性别：</span>
+
+                    <label class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>男
+                    </label>
+                    <label class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>女
+                    </label>
+                </div>
+                <div style="margin-top: 0.4rem;">
+                    <span style="margin-left:0.64rem;margin-bottom:0.7rem">临床诊断：</span>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>阿尔茨海默病
+                    </label><br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>轻度认知功能障碍
+                    </label><br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>血管性痴呆
+                    </label><br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>血管性认知障碍
+                    </label><br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>外伤或术后认知障碍
+                    </label><br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>精神障碍导致的认知功能损伤
+                    </label><br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>其他认知功能障碍
+                    </label>
+                </div>
+                <div class="combine" style="margin-top: 0.4rem;">
+                    <span style="margin-left:0.64rem;margin-bottom:0.7rem">是否有合并疾病：</span>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>无
+                    </label>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>有
+                    </label>
+                    <input type="text" class="mui-input-clear" placeholder="请填写合并疾病">
+
+
+                </div>
+                <div class="basicsign" style="margin-top: 0.4rem;">
+                    <span style="margin-left:0.64rem;margin-bottom:0.7rem">基本生命体征是否正常：</span>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>正常
+                    </label>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>不正常
+                    </label>
+                    <input type="text" class="mui-input-clear" placeholder="请填写">
+                </div>
+                <div class="kidney" style="margin-top: 0.4rem;">
+                    <span style="margin-left:0.64rem;margin-bottom:0.7rem">肝、肾功能是否正常：</span>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>正常
+                    </label>
+                    <br>
+                    <label style="margin-left:1.96rem" class="demo--label">
+                        <input class="demo--radio" type="radio" name="demo-radio">
+                        <span class="demo--radioInput"></span>不正常
+                    </label>
+                    <input type="text" class="mui-input-clear" placeholder="请填写">
+                </div>
+            </div>
+
+            <div class="secondproj">
+                <h4>二、用药情况</h4>
+                <div style="margin-left:0.64rem;margin-bottom:0.2rem"><span >胞磷胆碱：</span>
+                <span style="display:inline-block;color:#00499d">0.2g(2粒)/次,3次/日。</span></div>
+                <div class="dragday">
+
+                    <div class="demo">
+
+
+                        <form action="#">
+
+                            <!-- <fieldset> -->
+                            <label style="margin-left:0.64rem" for="speed">处方用药天数：</label>
+                            <select class="day" name="speed" id="speed" placeholder="请选择" value=''>
+                                <option>请选择</option>
+                                <option>1天</option>
+                                <option>2天</option>
+                                <option>3-5天</option>
+                                <option>5天以上</option>
+                            </select>&nbsp<span>天</span>
+                            <!-- </fieldset> -->
+                        </form>
+                    </div>
+
+                </div>
+                <div>
+                    <span style="margin-left:0.64rem;margin-bottom:0.7rem">对照药物：</span><br>
+                    <label style="margin-left:1.96rem;margin-top: 0.2rem;" class="demo--label">
+                        <input class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>常规治疗加用胞磷胆碱
+                    </label><br>
+                    <input style="margin-left:2.62666rem;margin-top: 0.2rem;" type="text" class="mui-input-clear drag" placeholder="请填写常规治疗用药"><br>
+                    <label style="margin-left:1.96rem;margin-top: 0.2rem;" class="demo--label">
+                        <input style="margin-left:2.62666rem;margin-top: 0.2rem;" class="demo--radio" type="checkbox" name="demo-checkbox2">
+                        <span class="demo--checkbox demo--radioInput"></span>使用对照药物
+                    </label><br>
+                    <input style="margin-left:2.62666rem;margin-top: 0.2rem;" type="text" class="mui-input-clear dragn" placeholder="请填写对照药物名称">
+
+                </div>
+            </div>
+
+
+            <div class="thirdproj">
+                <h4>三、疗效指标</h4>
+                <div class="firstview">
+                    <span style="margin-left:0.64rem">第1次访视</span>
+                    <table style="margin-left:0.64rem;margin-bottom: 0.4rem;
+    margin-top: 0.3rem" class="one">
+                        <tr>
+                            <th style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">阶段</th>
+                            <th style="text-align:center;border-bottom:1px solid #00499d">入组期</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">访视时间点</td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d">入组当天</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center ;background-color:#f1f1f1;border-bottom:1px solid #00499d;">疗效性指标</td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">MMSE<span style="vertical-align:super; font-size:10px;">1</span></td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d">ADAS-Cog<span style="vertical-align:super; font-size:10px">2</span></td>
+                            <td style="text-align:center"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                    </table>
+                    <span style="font-size: 10px;
+                    color: #979797;margin-left:0.64rem">注：1 MMSE 智能精神状态检查量表</span><br>&nbsp &nbsp &nbsp<span style="font-size: 10px;
+                    color: #979797;margin-left:0.64rem;margin-bottom:0.7rem">2 ADAS-Cog 阿尔海默茨病认知功能评价量表</span>
+                </div>
+                <div class=" secview " style="margin-top: 0.4rem;">
+                    <span style="margin-left:0.64rem">第2次访视</span>
+                    <table style="margin-left:0.64rem;
+    margin-top: 0.3rem;margin-bottom:0.7rem" class="one">
+                        <tr>
+                            <th style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">阶段</th>
+                            <th style="text-align:center;border-bottom:1px solid #00499d">入组期</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">访视时间点</td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><span>用药</span><input type="text " style="text-align: center;"><span>天</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center ;background-color:#f1f1f1;border-bottom:1px solid #00499d;">疗效性指标</td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">MMSE<span style="vertical-align:super; font-size:10px;">1</span></td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d">ADAS-Cog<span style="vertical-align:super; font-size:10px">2</span></td>
+                            <td style="text-align:center"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                    </table>
+
+
+                </div>
+                <div class="thrview ">
+                    <span style="margin-left:0.64rem">第3次访视</span>
+                    <table style="margin-left:0.64rem;
+    margin-top: 0.3rem;margin-bottom:0.7rem" class="one">
+                        <tr>
+                            <th style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">阶段</th>
+                            <th style="text-align:center;border-bottom:1px solid #00499d">入组期</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">访视时间点</td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><span>用药</span><input type="text" style="text-align: center;"><span>天</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center ;background-color:#f1f1f1;border-bottom:1px solid #00499d;">疗效性指标</td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">MMSE<span style="vertical-align:super; font-size:10px;">1</span></td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d">ADAS-Cog<span style="vertical-align:super; font-size:10px">2</span></td>
+                            <td style="text-align:center"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="fouview ">
+                    <span style="margin-left:0.64rem">第4次访视</span>
+                    <table style="margin-left:0.64rem;
+    margin-top: 0.3rem;margin-bottom:0.7rem" class="one">
+                        <tr>
+                            <th style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">阶段</th>
+                            <th style="text-align:center;border-bottom:1px solid #00499d">入组期</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">访视时间点</td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><span>用药</span><input type="text" style="text-align: center;"><span>天</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center ;background-color:#f1f1f1;border-bottom:1px solid #00499d;">疗效性指标</td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d;border-bottom:1px solid #00499d">MMSE<span style="vertical-align:super; font-size:10px;">1</span></td>
+                            <td style="text-align:center;border-bottom:1px solid #00499d"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;border-right:1px solid #00499d">ADAS-Cog<span style="vertical-align:super; font-size:10px">2</span></td>
+                            <td style="text-align:center"><input type="text" style="text-align: center;"><span>分</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="fouthproj ">
+                <h4>四、安全性评价</h4>
+                <span style="margin-left:0.64rem">在用药过程中，是否有不良反应发生：</span>
+                <br>
+                <label style="margin-left:1.96rem" class="demo--label">
+                    <input class="demo--radio" type="radio" name="demo-radio">
+                    <span class="demo--radioInput"></span>无
+                </label>
+                <br>
+                <label style="margin-left:1.96rem;position: relative;
+                top: -1.7rem;" class="demo--label">
+                    <input class="demo--radio" type="radio" name="demo-radio">
+                    <span class="demo--radioInput"></span>有
+                </label>
+                <textarea rows="4 " cols="50 " maxlength="50 ">请填写所发生的不良反应
+                        </textarea>
+                </label>
+            </div>
+            <div class="lastproj" style="margin-top: 0.5rem;
+    font-size: 16px;">
+                <span style="margin-left:0.64rem">医师签字：</span>
+                <input type="text ">
+            </div>
+            
+                <button class="confirm">提交</button>
+            
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

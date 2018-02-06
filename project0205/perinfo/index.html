@@ -1,0 +1,757 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--禁止缩放-->
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <title>心脑视野</title>
+
+    <link href="images/font/font-awesome.css" rel="stylesheet" type="text/css">
+    <!--字体图标-->
+    <link href="css/public.css" rel="stylesheet" type="text/css">
+    <!--默认共用样式-->
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="swiper/swiper.min.css">
+    <script src="swiper/swiper.min.js"></script>
+    <link href="css/page_style.css" rel="stylesheet" type="text/css">
+    <!--页面所需样式-->
+    <script type="text/javascript" src="./js/flexible.js"></script>
+
+
+
+    <style type="text/css">
+        /* 用户绑定拨动框架 */
+        
+        .my-pagination .swiper-pagination-bullet {
+            text-align: center;
+            border-radius: 0;
+            opacity: 1;
+        }
+        
+        .my-pagination ul {
+            display: -webkit-box;
+        }
+        
+        .my-pagination li {
+            display: block;
+            background: #fff;
+            overflow: hidden;
+            box-flex: 1;
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            height: 50px;
+            line-height: 40px;
+            position: relative;
+            font-size: 15px;
+        }
+        
+        .my-pagination li:after {
+            position: absolute;
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            height: 1px;
+            content: '';
+            /* background-color: #dcdcdc; */
+            -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+            -webkit-transform: scaleY(.5)
+        }
+        
+        .my-pagination .swiper-pagination-bullet-active {
+            color: #0e54a3;
+        }
+        
+        .my-pagination .swiper-pagination-bullet-active:after {
+            opacity: 1;
+            background-color: #f7ab00;
+            height: 5px;
+        }
+        /* 用户绑定 */
+        
+        .user_zc_body {
+            margin: 0px auto;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .user_zc_body ul {
+            margin: 0 20px;
+            overflow: hidden;
+        }
+        
+        .user_zc_body li {
+            background: #fff;
+            overflow: hidden;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .user_zc_body li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .user_zc_body li:after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            width: 100%;
+            height: 1px;
+            /* background: #fff; */
+            -webkit-transform: scaleY(.5);
+        }
+        
+        .user_zc_body .p_input {
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .user_zc_body .p_input input {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            height: 40px;
+            color: #444;
+            font-size: 15px;
+        }
+        
+        .user_zc_body .p_input_sm {
+            padding-right: 50px;
+        }
+        
+        .user_zc_body .p_input_sm .sp_btn {
+            display: inline-block;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            z-index: 1;
+            width: 40px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #fff;
+            color: #666;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .user_zc_body .p_input_sm .sp_btn i {
+            font-size: 24px;
+            margin-top: 4px;
+            line-height: 32px;
+        }
+        
+        .user_zc_body .p_input_yzm {
+            padding-right: 90px;
+        }
+        
+        .user_zc_body .p_input_yzm .sp_btn {
+            display: inline-block;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            z-index: 1;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #288eff;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .user_zc_body .p_input_yzm .sp_btn:active {
+            background: #2686ef;
+        }
+        
+        .user_zc_body .p_input_yzm .sp_btn_dx {
+            right: 70px;
+        }
+        
+        .user_zc_body .p_input_yzm .sp_btn.no_hit {
+            color: #bbb;
+        }
+        
+        .user_wj_pw {
+            overflow: hidden;
+            padding: 0 10px;
+        }
+        
+        .user_zc_btn {
+            padding: 20px;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .user_zc_btn .p_btn {
+            overflow: hidden;
+        }
+        
+        .user_zc_btn .p_btn a {
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .user_zc_btn .p_btn a.c_3 {
+            background: #288eff;
+        }
+        
+        .user_zc_btn .p_btn a.c_3:active {
+            background: #2686ef;
+        }
+        
+        .main {
+            height: 31.146666rem;
+            width: 100%;
+            position: relative;
+        }
+        
+        .main img {
+            width: 100%;
+            display: block;
+        }
+        
+        .main form {
+            /* height: 0px; */
+            width: 100%;
+            box-sizing: border-box;
+            /* 让padding包含在width的100%内 */
+            position: absolute;
+            top: 40px;
+            left: 0;
+            padding: 0 0.67rem;
+        }
+        
+        .main form button {
+            width: 100%;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+            background: #2b69ae;
+            border-radius: 5px;
+            padding: 0.42rem;
+            margin-bottom: 0.53rem;
+            color: #fff;
+            font-size: 0.43rem;
+            text-align: center;
+            line-height: 1;
+            margin-top: 0.6rem;
+        }
+        
+        .gap {
+            height: 0.26rem;
+            background-color: #ebebeb;
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            /* overflow: hidden; */
+        }
+        
+        .header {
+            padding: 0.24rem 0.4rem;
+            background: #fff;
+            display: flex;
+            /* flex布局 */
+            flex-direction: row;
+            align-items: center;
+            border-bottom: 2px solid #0d6aac;
+        }
+        
+        .header li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .fir img {
+            display: block;
+        }
+        
+        .fir .logo {
+            width: 0.88rem;
+            margin-right: 0.21rem;
+        }
+        
+        .fir .word {
+            width: 2.09rem;
+            margin-right: 0.4rem;
+        }
+        
+        .sec {
+            font-size: 16px;
+            color: #004a9e;
+            padding: 0.03rem 0.36rem;
+            border-left: 2px solid #c0c0c0;
+        }
+        /* .user {
+            background: url("img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+        }
+        
+        .pwd {
+            background: url("img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+        }
+        
+        .name {
+            background: url("img/name.png") no-repeat left center;
+            background-size: 0.45rem;
+        }
+        
+        .phone {
+            background: url("img/phone.png") no-repeat left center;
+            background-size: 0.3rem;
+            background-position-x: 3px;
+        }
+        
+        .pro {
+            background: url("img/pro.png") no-repeat left center;
+            background-size: 0.51rem;
+        } */
+        
+        .sdiv {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        
+        #distpicker1 select,
+        .yiyuan,
+        .keshi,.zhicheng {
+            appearance: none;
+            background: url("../perinfo/img/arrow.png") no-repeat scroll right center transparent;
+            background-size: 24px;
+            border-radius: 0;
+            /* background-position-x: 200px; */
+            padding-right: 10px;
+            border: 1px solid #fff;
+            outline: none;
+            /* height: 0.7rem; */
+            width: 5.6rem;
+            font-size: 14px;
+            color: #595757;
+            background-color: #fff;
+            margin-bottom: 1px;
+            padding-top: 12px;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+        }
+        
+        .tu {
+            background: url("../perinfo/img/city.png") no-repeat left center;
+            background-size: 0.51rem;
+            display: block;
+            padding-left: 0.71rem;
+        }
+        
+        .ddiv {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        
+        .shuru {
+            display: block;
+            outline: none;
+            /* 去除input点击之后出现的边框线 */
+            width: 60%;
+            background: rgba(0, 0, 0, 0);
+            border: none;
+              border-left: 1px solid #898989;
+            padding-left: 0.2rem;
+            font-size: 0.37rem;
+            color: #686868;
+        }
+        /* .icon {
+            background: url("../heart 2/img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+            display: block;
+            padding-left: 0.71rem;
+            background-size: 15px;
+        } */
+        
+        .yonghu {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../perinfo/img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .password {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../perinfo/img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .ming {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../perinfo/img/name.png") no-repeat left center;
+            background-size: 0.51rem;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .shouji {
+            display: block;
+            /* padding-left: 0.71rem; */
+            /* background-size: 14px; */
+            background: url("../perinfo/img/phone.png") no-repeat left center;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .shen {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 14px; */
+            background: url("../perinfo/img/prov.png") no-repeat left center;
+        }
+        
+        .cheng {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 14px; */
+            background: url("../perinfo/img/city.png") no-repeat left center;
+        }
+        
+        .yuan {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 14px; */
+            background: url("../perinfo/img/hosp.png") no-repeat left center;
+        }
+        
+        .ke {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 14px; */
+            background: url("../perinfo/img/room.png") no-repeat left center;
+        }
+        
+        .zhi {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 14px; */
+            background: url("../perinfo/img/pro.png") no-repeat left center;
+        }
+        /* 填图 */
+        
+        .kuan {
+            display: block;
+            /* padding-left: 0.71rem; */
+            /* background-size: 0.51rem; */
+            background: url("../perinfo/img/shou.png") no-repeat left center;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .zheng {
+            display: block;
+            /* padding-left: 0.71rem; */
+            /* background-size: 0.51rem; */
+            background: url("../perinfo/img/shenfen.png") no-repeat left center;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .zhanghao {
+            display: block;
+            /* padding-left: 0.71rem; */
+            /* background-size: 0.51rem; */
+            background: url("../perinfo/img/yinhang.png") no-repeat left center;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .kaihu {
+            display: block;
+            /* padding-left: 0.71rem; */
+            /* background-size: 0.51rem; */
+            background: url("../perinfo/img/kaihu.png") no-repeat left center;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .sdiv {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        
+        .wenzi {
+            padding-left: 0.2rem;
+            border-left: 1px solid #898989;
+            font-size: 0.34rem;
+            color: #686868;
+            display: block;
+            padding-left: 0.71rem;
+        }
+        .anwenzi{
+            
+            padding-left: 0.2rem;
+            border-left: 1px solid #898989;
+            font-size: 0.34rem;
+            color: #686868;
+            display: block;
+            /* padding-left: 0.71rem; */
+        
+        }
+    </style>
+
+    <style>
+        .basic-info,
+        .change-password {
+            position: relative;
+        }
+        
+        .basic-info::before,
+        .change-password::before {
+            content: '';
+            background-size: 0.51rem;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: -34px;
+            top: -5px;
+        }
+        
+        .my-pagination ul :nth-child(2) {
+            border-left: 1px solid #c0c0c0;
+        }
+        
+        .basic-info::before {
+            background: url("img/basicc.png") no-repeat left center;
+            background-size: 25px;
+        }
+        
+        .change-password::before {
+            background: url("img/cpwod.png") no-repeat left center;
+            background-size: 23px;
+        }
+    </style>
+</head>
+
+<body ontouchstart>
+
+    <ul class="header">
+        <li class="fir">
+            <img src="./img/logo.png" alt="" class="logo">
+            <img src="./img/word.png" alt="" class="word">
+        </li>
+        <li class="sec">个人中心</li>
+    </ul>
+
+    <div class="swiper-container">
+        <div class="my-pagination">
+            <ul class="my-pagination-ul"></ul>
+        </div>
+        <div class="gap"></div>
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide ">
+                <!--手机绑定GO-->
+                <!-- 表单 -->
+                <div class="main">
+
+                    <form action="">
+
+                        <div class="user-pass sdiv">
+                            <span class="icon yonghu"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="用户名："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon password"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="密码："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon ming"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="姓名："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="shouji" style="background-size: 13px;"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="手机："/>
+                        </div>
+                        <div id="distpicker1">
+                            <div class="ddiv">
+                                <span class="icon shen" style="background-size: 15px;"><span class="anwenzi">省份：</span></span>
+                                <select></select>
+                            </div>
+                            <div class="ddiv">
+                                <span class="icon cheng" style="background-size: 15px;"><span class="anwenzi">城市：</span></span>
+                                <select></select>
+                            </div>
+                            <select style="display:none"></select>
+                        </div>
+                        <div class="ddiv">
+                            <span class="icon yuan" style="background-size: 15px;"><span class="anwenzi">医院：</span></span>
+                            <select class="yiyuan">
+                                            <option></option>
+                                            <option></option>
+                                            <option></option>
+                                            <option></option>
+                                            <option></option>
+                                        </select>
+                        </div>
+                        <div class="ddiv">
+                            <span class="icon ke" style="background-size: 15px;"><span class="anwenzi">科室：</span></span>
+                            <select class="keshi">
+                                                <option></option>
+                                                <option></option>
+                                                <option></option>
+                                                <option></option>
+                                                <option></option>
+                                            </select>
+                        </div>
+                        <div class="ddiv">
+                            <span class="icon zhi" style="background-size: 15px;">
+                                <span class="anwenzi">职称：</span>
+                            </span>
+                            <select class="zhicheng">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                            </select>
+                        </div>
+
+                        <!-- <div class="user-pass sdiv">
+                            <span class="icon zhi" style="background-size: 15px;"><span class="wenzi">职称：</span></span>
+                            <input class="user yso shuru" type="text" />
+                        </div> -->
+                        <div class="user-pass sdiv">
+                            <span class="icon kuan" style="background-size: 15px;"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="收款人："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon zheng" style="background-size: 15px;"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="身份证："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon zhanghao" style="background-size: 15px;"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="银行账号："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon kaihu" style="background-size: 15px;"><span class="wenzi"></span></span>
+                            <input class="user yso shuru" type="text" placeholder="开户行："/>
+                        </div>
+
+                        <button class="confirm">确定</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+
+            <div class="swiper-slide ">
+
+                <!-- 表单 -->
+                <div class="main">
+
+                    <form action="">
+
+                        <div class="user-pass sdiv">
+                            <span class="icon password"><span class="wenzi" ></span></span>
+                            <input class="user yso shuru" type="text" placeholder="旧密码："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon password"><span class="wenzi" ></span></span>
+                            <input class="user yso shuru" type="text" placeholder="新密码："/>
+                        </div>
+                        <div class="user-pass sdiv">
+                            <span class="icon password"><span class="wenzi" ></span></span>
+                            <input class="user yso shuru" type="text" placeholder="确认密码："/>
+                        </div>
+                        <button class="confirm">确定</button>
+                    </form>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/distpicker.min.js"></script>
+    <script type="text/javascript">
+        $("#distpicker1").distpicker();
+    </script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.my-pagination-ul',
+            paginationClickable: true,
+            paginationBulletRender: function(index, className) {
+                switch (index) {
+                    case 0:
+                        icon = 'basic-info'
+                        name = '基本信息';
+
+                        break;
+                    case 1:
+                        icon = 'change-password'
+                        name = '修改密码';
+
+                        break;
+
+                    default:
+                        name = '';
+                }
+                return `<li class='${className}'><span class='${icon}'>${name}</span></li>`;
+            }
+        })
+    </script>
+
+
+
+</body>
+
+</html>

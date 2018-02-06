@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>心脑视野</title>
+    <!-- 清除各种标签的默认样式文件 -->
+    <link rel="stylesheet" href="./css/minireset.min.css">
+
+    <!-- 用来设置rem根节点的大小-->
+    <script type="text/javascript" src="./js/flexible.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            /* overflow: hidden; */
+        }
+        /* 正文样式 */
+        
+        .wrapper {
+            width: 100%;
+        }
+        
+        .header {
+            padding: 0.24rem 0.4rem;
+            background: #fff;
+            display: flex;
+            /* flex布局 */
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .header li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .fir img {
+            display: block;
+        }
+        
+        .fir .logo {
+            width: 0.88rem;
+            margin-right: 0.21rem;
+        }
+        
+        .fir .word {
+            width: 2.09rem;
+            margin-right: 0.4rem;
+        }
+        
+        .sec {
+            font-size: 16px;
+            color: #004a9e;
+            padding: 0.03rem 0.36rem;
+            border-left: 2px solid #c0c0c0;
+        }
+        
+        .main {
+            width: 100%;
+            position: relative;
+        }
+        
+        .main img {
+            width: 100%;
+            display: block;
+        }
+        
+        .main form {
+            width: 100%;
+            box-sizing: border-box;
+            /* 让padding包含在width的100%内 */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0 0.67rem;
+        }
+        
+        .main form div {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        
+        .main form div>span {
+            display: block;
+            padding-left: 0.71rem;
+        }
+        
+        .main form div>span>span {
+            
+            /* font-size: 0.37rem;
+            color: #686868; */
+        }
+        
+        /* .main form .user-name>span {
+            background: url("img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+        } */
+        .userpic{
+            background: url("img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+        }
+        .main form .user-pass {
+            margin-bottom: 1rem;
+        }
+        
+        /* .main form .user-pass>span {
+            background: url("img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+        } */
+        .pwd{
+            background: url("img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+        }        
+        .main form div input {
+            display: block;
+            outline: none;
+            /* 去除input点击之后出现的边框线 */
+            width: 70%;
+            background: rgba(0, 0, 0, 0);
+            border: none;
+            padding-left: 0.2rem;
+            border-left: 1px solid #898989;
+            font-size: 0.37rem;
+            color: #686868;
+        }
+        
+        .main form button {
+            width: 100%;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+            background: #2b69ae;
+            border-radius: 5px;
+            padding: 0.42rem;
+            margin-bottom: 0.53rem;
+            color: #fff;
+            font-size: 0.43rem;
+            text-align: center;
+            line-height: 1;
+        }
+        .main span {
+            display: inline-block;
+            /* color: #004a9e; */
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- 导航 -->
+        <ul class="header">
+            <li class="fir">
+                <img src="./img/logo.png" alt="" class="logo">
+                <img src="./img/word.png" alt="" class="word">
+            </li>
+            <li class="sec">登录</li>
+        </ul>
+        <!-- 表单 -->
+        <div class="main">
+            <img src="./img/focus.png" alt="">
+            <form action="">
+                <div class="user-name">
+                    <span class="userpic"><span></span></span>
+                    <input class="user yso" type="text" placeholder="用户名："/>
+                </div>
+                <div class="user-pass">
+                    <span class="pwd"><span></span></span>
+                    <input class="user yso" type="text" placeholder="密码："/>
+                </div>
+                <button class="confirm">登录</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

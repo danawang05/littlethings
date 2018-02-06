@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>心脑视野</title>
+    <!-- 清除各种标签的默认样式文件 -->
+    <link rel="stylesheet" href="./css/minireset.min.css">
+    <!-- 用来设置rem根节点的大小 -->
+    <script type="text/javascript" src="./js/flexible.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            /* overflow: hidden; */
+        }
+        /* 正文样式 */
+        
+        .wrapper {
+            width: 100%;
+        }
+        
+        .header {
+            padding: 0.24rem 0.4rem;
+            background: #fff;
+            display: flex;
+            /* flex布局 */
+            flex-direction: row;
+            align-items: center;
+            border-bottom: 2px solid #0d6aac;
+        }
+        
+        .header li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .nav {
+            padding: 0.24rem 0.4rem;
+            background: #fff;
+            display: flex;
+            /* flex布局 */
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .nav li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .fir img {
+            display: block;
+        }
+        
+        .fir .logo {
+            width: 0.88rem;
+            margin-right: 0.21rem;
+        }
+        
+        .fir .word {
+            width: 2.09rem;
+            margin-right: 0.4rem;
+        }
+        
+        .sec {
+            font-size: 16px;
+            color: #004a9e;
+            padding: 0.03rem 0.36rem;
+            border-left: 2px solid #c0c0c0;
+        }
+        
+        .first>span>span {
+            padding-left: 0.7rem;
+            /* border-left: 1px solid #898989; */
+            /* font-size: 0.37rem; */
+            color: #004a9e;
+        }
+        
+        .second>span {
+            background: url("../heart /img/cpwod.png") no-repeat left center;
+            background-size: 0.51rem;
+        }
+        
+        .second>span>span {
+            padding-left: 0.7rem;
+            /* border-left: 1px solid #898989; */
+            /* font-size: 0.37rem; */
+            color: #004a9e;
+        }
+        
+        .first>span {
+            background: url("../heart /img/basici.png") no-repeat left center;
+            background-size: 0.51rem;
+        }
+        
+        .first {
+            font-size: 16px;
+            /* color: #004a9e; */
+            padding: 0.03rem 1rem;
+            /* border-left: 2px solid #c0c0c0; */
+        }
+        
+        .second {
+            /* width: 46%; */
+            font-size: 16px;
+            /* color: #004a9e; */
+            padding: 0.03rem 0.36rem;
+            border-left: 2px solid #c0c0c0;
+        }
+        
+        .nav li:hover {
+            border-bottom: 5px solid #f7ab00;
+        }
+        
+        .main {
+            /* height: 26.146666rem; */
+            width: 100%;
+            position: relative;
+        }
+        
+        .main img {
+            width: 100%;
+            display: block;
+        }
+        
+        .main form {
+            /* height: 0px; */
+            width: 100%;
+            box-sizing: border-box;
+            /* 让padding包含在width的100%内 */
+            position: absolute;
+            top: 90px;
+            left: 0;
+            padding: 0 0.67rem;
+        }
+        
+        .sdiv {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        /* .main form div>span {
+            display: block;
+            padding-left: 0.71rem;
+        } */
+        /* .main form div>span>span {
+            padding-left: 0.2rem;
+            border-left: 1px solid #898989;
+            font-size: 0.37rem;
+            color: #686868;
+        } */
+        /* .main form .user-name>span {
+            background: url("../heart 2/img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+        } */
+        /* .main form .user-pass {
+            margin-bottom: 1rem;
+        } */
+        /* .main form .user-pass>span {
+            background: url("../heart 2/img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+        } */
+        /* .main form div input {
+            display: block;
+            outline: none;
+             去除input点击之后出现的边框线 
+            width: 60%;
+            background: rgba(0, 0, 0, 0);
+            border: none;
+        } */
+        
+        .main form button {
+            width: 100%;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+            background: #2b69ae;
+            border-radius: 5px;
+            padding: 0.42rem;
+            margin-bottom: 0.53rem;
+            color: #fff;
+            font-size: 0.43rem;
+            text-align: center;
+            line-height: 1;
+            margin-top: 1rem;
+        }
+        
+        .gap {
+            height: 0.26rem;
+            background-color: #ebebeb;
+        }
+        
+        #distpicker1 select,
+        .yiyuan,
+        .keshi,.zhicheng {
+            appearance: none;
+            background: url("../heart /img/arrow.png") no-repeat scroll right center transparent;
+            background-size: 24px;
+            border-radius: 0;
+            /* background-position-x: 200px; */
+            padding-right: 10px;
+            border: 1px solid #fff;
+            outline: none;
+            /* height: 0.7rem; */
+            width: 5.7rem;
+            font-size: 14px;
+            color: #595757;
+            background-color: #fff;
+            margin-bottom: 1px;
+        }
+        
+        .tu {
+            background: url("../heart /img/city.png") no-repeat left center;
+            background-size: 0.51rem;
+            display: block;
+            padding-left: 0.71rem;
+        }
+        
+        .ddiv {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        
+        .shuru {
+            display: block;
+            outline: none;
+            /* 去除input点击之后出现的边框线 */
+            width: 60%;
+            background: rgba(0, 0, 0, 0);
+            border: none;
+            border-left: 1px solid #898989;
+            padding-left: 0.2rem;
+            font-size: 0.37rem;
+            color: #686868;
+        }
+        /* .icon {
+            background: url("../heart 2/img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+            display: block;
+            padding-left: 0.71rem;
+            background-size: 15px;
+        } */
+        
+        .yonghu {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../heart /img/user.png") no-repeat left center;
+            background-size: 0.51rem;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .password {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../heart /img/pwd.png") no-repeat left center;
+            background-size: 0.51rem;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .ming {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../heart /img/name.png") no-repeat left center;
+            background-size: 0.51rem;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .shouji {
+            display: block;
+            /* padding-left: 0.71rem; */
+            background: url("../heart /img/phone.png") no-repeat left center;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .shen {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 0.51rem; */
+            background: url("../heart /img/prov.png") no-repeat left center;
+        }
+        
+        .cheng {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 0.51rem; */
+            background: url("../heart /img/city.png") no-repeat left center;
+        }
+        
+        .yuan {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 0.51rem; */
+            background: url("../heart /img/hosp.png") no-repeat left center;
+        }
+        
+        .ke {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 0.51rem; */
+            background: url("../heart /img/room.png") no-repeat left center;
+        }
+        
+        .zhi {
+            display: block;
+            padding-left: 0.71rem;
+            /* background-size: 0.51rem; */
+            background: url("../heart /img/pro.png") no-repeat left center;
+        }
+        
+        .sdiv {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #2b69ae;
+            border-radius: 5px;
+            padding: 0.32rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.53rem;
+        }
+        
+        .wenzi {
+            padding-left: 0.2rem;
+            border-left: 1px solid #898989;
+            font-size: 0.34rem;
+            color: #686868;
+            display: block;
+            padding-left: 0.71rem;
+        }
+        .anwenzi{
+            padding-left: 0.2rem;
+            border-left: 1px solid #898989;
+            font-size: 0.34rem;
+            color: #686868;
+            display: block;
+            /* padding-left: 0.71rem; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- 导航 -->
+        <ul class="header">
+            <li class="fir">
+                <img src="./img/logo.png" alt="" class="logo">
+                <img src="./img/word.png" alt="" class="word">
+            </li>
+            <li class="sec">注册</li>
+        </ul>
+
+        <div class="gap"></div>
+        <!-- 表单 -->
+        <div class="main">
+
+            <form action="">
+
+                <div class="user-pass sdiv">
+                    <span class="icon yonghu"><span class="wenzi"></span></span>
+                    <input class="user yso shuru" type="text" placeholder="用户名："/>
+                </div>
+                <div class="user-pass sdiv">
+                    <span class="icon password"><span class="wenzi"></span></span>
+                    <input class="user yso shuru" type="text" placeholder="密码："/>
+                </div>
+                <div class="user-pass sdiv">
+                    <span class="icon ming"><span class="wenzi"></span></span>
+                    <input class="user yso shuru" type="text" placeholder="姓名："/>
+                </div>
+                <div class="user-pass sdiv">
+                    <span class="icon shouji" style="background-size:13px"><span class="wenzi"></span></span>
+                    <input class="user yso shuru" type="text" placeholder="手机："/>
+                </div>
+                <div id="distpicker1">
+                    <div class="ddiv">
+                        <span class="icon shen" style="background-size:15px"><span class="anwenzi">省份：</span></span>
+                        <select></select>
+                    </div>
+                    <div class="ddiv">
+                        <span class="icon cheng" style="background-size:15px"><span class="anwenzi">城市：</span></span>
+                        <select></select>
+                    </div>
+                    <select style="display:none"></select>
+                </div>
+                <div class="ddiv">
+                    <span class="icon yuan" style="background-size:15px"><span class="anwenzi">医院：</span></span>
+                    <select class="yiyuan">
+                                    <option></option>
+                                    <option></option>
+                                    <option></option>
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                </div>
+                <div class="ddiv">
+                    <span class="icon ke" style="background-size:15px"><span class="anwenzi">科室：</span></span>
+                    <select class="keshi">
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                    </select>
+                </div>
+                <div class="ddiv">
+                    <span class="icon zhi" style="background-size:15px">
+                        <span class="anwenzi">职称：</span>
+                    </span>
+                    <select class="zhicheng">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                </div>
+
+                <!-- <div class="user-pass sdiv">
+                    <span class="icon zhi" style="background-size:15px"><span class="wenzi">职称：</span></span>
+                    <input class="user yso shuru" type="text" />
+                </div> -->
+
+                <button class="confirm">确定</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/distpicker.min.js"></script>
+    <script type="text/javascript">
+        $("#distpicker1").distpicker();
+    </script>
+</body>
+
+</html>
